@@ -33,8 +33,10 @@ const BugForm = ({ bug }: { bug?: Bug }) => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setIsSubmitting(true);
-      await axios.post("/api/bugs", data);
+      if (bug) await axios.patch(`/api/bugs/${bug.id}`, data);
+      else await axios.post("/api/bugs", data);
       router.push("/bugs");
+      router.refresh();
     } catch (error) {
       setIsSubmitting(false);
       setError("Please Fill the fields correctly");
@@ -68,7 +70,7 @@ const BugForm = ({ bug }: { bug?: Bug }) => {
         <ErrorMessage>{errors.description?.message}</ErrorMessage>
 
         <Button disabled={isSubmitting}>
-          Submit New Bug
+          {bug ? "Update Bug" : "Submit New Bug"}
           {isSubmitting && <Spinner />}
         </Button>
       </form>
