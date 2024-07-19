@@ -1,43 +1,42 @@
-import prisma from "@/prisma/client";
 import { Table } from "@radix-ui/themes";
-import { BugStatusBadge, Link } from "../components";
-
+import React from "react";
+import { Skeleton } from "@/app/components";
 import BugsActions from "./BugsActions";
-const BugsPage = async () => {
-  const bugs = await prisma.bug.findMany();
 
+const BugsLoading = () => {
+  const bugs = [1, 2, 3, 4, 5];
   return (
     <div>
       <BugsActions />
-
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>
-            <Table.ColumnHeaderCell>Bug</Table.ColumnHeaderCell>
-            <Table.ColumnHeaderCell className="hidden md:table-cell">
-              Status
+            <Table.ColumnHeaderCell>
+              <Skeleton />
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
-              Created At
+              <Skeleton />
+            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell className="hidden md:table-cell">
+              <Skeleton />
             </Table.ColumnHeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {bugs.map((bug) => (
-            <Table.Row key={bug.id}>
+          {bugs.map((bug, idx) => (
+            <Table.Row key={idx}>
               <Table.RowHeaderCell>
-                <Link href={`/bugs/${bug.id}`}>{bug.title}</Link>
-
+                <Skeleton />
                 <div className="block md:hidden">
                   {" "}
-                  <BugStatusBadge status={bug.status} />
+                  <Skeleton />
                 </div>
               </Table.RowHeaderCell>
               <Table.Cell className="hidden md:table-cell">
-                <BugStatusBadge status={bug.status} />
+                <Skeleton />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
-                {bug.createdAt.toDateString()}
+                <Skeleton />
               </Table.Cell>
             </Table.Row>
           ))}
@@ -47,4 +46,4 @@ const BugsPage = async () => {
   );
 };
 
-export default BugsPage;
+export default BugsLoading;
