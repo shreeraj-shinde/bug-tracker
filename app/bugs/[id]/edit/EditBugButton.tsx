@@ -6,8 +6,8 @@ const EditBugButton = ({ bugId }: { bugId: number }) => {
   return (
     <>
       <Button>
+        <Link href={`/bugs/${bugId}/edit`}> Edit Bug</Link>
         <Pencil2Icon />
-        <Link href={`/bugs/${bugId}/edit`}>Edit Bug</Link>
       </Button>
     </>
   );

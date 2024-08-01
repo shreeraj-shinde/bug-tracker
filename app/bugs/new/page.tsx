@@ -1,5 +1,10 @@
 import React from "react";
-import BugForm from "../_components/BugForm";
+import dynamic from "next/dynamic";
+import BugFormLoadingSkeleton from "../_components/BugFormLoadingSkeleton";
+const BugForm = dynamic(() => import("../_components/BugForm"), {
+  ssr: false,
+  loading: () => <BugFormLoadingSkeleton />,
+});
 
 const NewBugPage = () => {
   return <BugForm />;

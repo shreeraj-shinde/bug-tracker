@@ -12,9 +12,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
+import SimpleMDE from "react-simplemde-editor";
 type BugFormData = z.infer<typeof bugSchema>;
 
 const BugForm = ({ bug }: { bug?: Bug }) => {

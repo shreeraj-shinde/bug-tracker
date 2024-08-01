@@ -14,5 +14,8 @@
   }
 }
 
-body {
+@layer utilities {
+  .nav-links {
+    @apply text-zinc-300 hover:text-white font-medium transition-colors;
+  }
 }
